@@ -5,7 +5,7 @@ Simple RestAPI for uploading public keys similar to https://www.mullvad.net/guid
 
 All keys are stored witin a SQLite Database. Wireguard configuration is generated and apllied on the fly.
 
-###Deployment (on Debian) 
+### Deployment (on Debian) 
 
 #### 1. Install needed packages
 
