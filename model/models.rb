@@ -9,6 +9,8 @@ ActiveRecord::Base.establish_connection(
 )
 
 class KeyRegistration < ActiveRecord::Base
+  # Fields: id, pubkey, document, disabled, created_at, updated_at
+
   def self.settings=(value)
     @@settings = value
   end

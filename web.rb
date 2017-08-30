@@ -31,7 +31,7 @@ def write_config_file
   begin
     template = File.read("conf/rest.conf.erb")
     secret_key = File.read(settings.secret_key_file)
-    vars = {priv_key: secret_key, peers: KeyRegistration.all}
+    vars = {priv_key: secret_key, peers: KeyRegistration.where("disabled is null or disabled = 0")}
     File.open(settings.config_file, 'w') do  |f|
       f.flock(File::LOCK_EX)
       f << ERB.new(template).result(OpenStruct.new(vars).instance_eval { binding })
