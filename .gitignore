@@ -1,0 +1,5 @@
+**.iml
+db/regs.db
+conf/app.yml
+conf/rest.conf.erb
+.idea/**
