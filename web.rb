@@ -11,17 +11,23 @@ end
 
 post '/' do
   pubkey = params['pubkey']
-  k = KeyRegistration.find_or_create_by(pubkey: params['pubkey'])
-
-  if k.valid?
-    logger.info "Uploaded #{pubkey} - Networks:"
-    status 201
+  
+  if k = KeyRegistration.find_by(pubkey: params['pubkey'])
+    status 202
     body k.client_networks_str
-    Thread.new { write_config_file }
-  else
-    status 400
-    logger.error "Invalid public key #{pubkey}"
-    body k.errors.values.to_json
+  else  
+    k = KeyRegistration.find_or_create_by(pubkey: params['pubkey'])
+
+    if k.valid?
+      logger.info "Uploaded #{pubkey} - Networks:"
+      status 201
+      body k.client_networks_str
+      Thread.new { write_config_file }
+    else
+      status 400
+      logger.error "Invalid public key #{pubkey}"
+      body k.errors.values.to_json
+    end
   end
 end
 
