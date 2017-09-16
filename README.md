@@ -48,25 +48,23 @@ a network interface accordingly.
 
 As usual, mod_rails / phusion passenger can be used as well.
 
-### 1. Install packages
+### 1. System Packages
 
 `apt-get install rails git puma sudo ruby-dev`
 
-### 2. Create User
+### 2. Application User
 
 `useradd -m wireguard-rest -s /bin/bash; su - wireguard-rest`
 
-### 3. Enable sudo
-
-The users created previously must be able to apply wireguard configuration:
+### 3. Sudo
 
 `wireguard-rest  ALL=(root) NOPASSWD: /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
 
-### 4. Create Network interface
+### 4. Network Link
 
-Create a network interface on your system (default: `wg-rest`) according to your neddes
+Make sure that a wireguard link (default name: `wg-rest`) exists on your system.
 
-### 5. Clone / Checkout
+### 5. Clone
 
 `git clone https://github.com/yanosz/wireguard-rest.git`
 
@@ -80,9 +78,9 @@ Create a network interface on your system (default: `wg-rest`) according to your
 - Database: `rake db:migrate RAILS_ENV=production`
 - Wireguard configuration:  `rake init:wg_conf RAILS_ENV=production`
 
-Make sure, that `/etc/wireguard/rest.conf` (default location, configurable) is correct and applicable: `sudo /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
+Make sure, that `/etc/wireguard/rest.conf` is correct and applicable: `sudo /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
 
-### 8. Start server
+### 8. Running
 
 `rails s -e production`
 
