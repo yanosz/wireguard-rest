@@ -53,6 +53,7 @@ class KeyRegistration < ActiveRecord::Base
         f << ERB.new(template).result(OpenStruct.new(vars).instance_eval { binding })
         f.chmod 0700
       end
+      system(@@settings["wg_reload_cmd"])
     rescue Exception => e
       logger.error "Error writing config file #{e.message}"
     end
