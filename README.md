@@ -43,18 +43,49 @@ This application can be deployed as a standard ruby on rails application. For si
 
 Please note, that the deployment instructions are rather brief and assume general knowledge on deploying Ruby on Rails applications.
 
-0. Install some package `apt-get install rails git puma sudo ruby-dev`
-1. Create a user, su `useradd -m wireguard-rest -s /bin/bash; su - wireguard-rest`
-2. Enable sudo for wireguard rest: Configuration must be applicable: `wireguard-rest  ALL=(root) NOPASSWD: /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
-3. Add a network interface for wiregard (default: `wg-rest`)
-4. Clone the application `git clone ...`
-5. Adjust `config/app.yml` and `config/rest.erb.conf` according to your needs.
-6. When not using sqlite3, adjust `config/database.yml`. Install addition packages if needed.
-7. Initialize the database `rake db:migrate RAILS_ENV=production`
-8. Generate the initial wireguard configuration `rake init:wg_conf` (default: `/etc/wireguard/rest.conf`)
-9. Make sure, that `/etc/wireguard/rest.conf` is correct and can be applied: `sudo /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
+In addition, (ansible-wireguard-rest)[https://github.com/yanosz/ansible-wireguard-rest] can be used for ansible based deployments on Debian 9. It configures this application and
+a network interface accordingly.
 
-As usual, mod_rails / passenger can be used as well.
+As usual, mod_rails / phusion passenger can be used as well.
+
+### 1. Install packages
+
+`apt-get install rails git puma sudo ruby-dev`
+
+### 2. Create User
+
+`useradd -m wireguard-rest -s /bin/bash; su - wireguard-rest`
+
+### 3. Enable sudo
+
+The users created previously must be able to apply wireguard configuration:
+
+`wireguard-rest  ALL=(root) NOPASSWD: /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
+
+### 4. Create Network interface
+
+Create a network interface on your system (default: `wg-rest`) according to your neddes
+
+### 5. Clone / Checkout
+
+`git clone https://github.com/yanosz/wireguard-rest.git`
+
+### 6. Configuration
+
+- `config/app.yml` and `config/rest.erb.conf` according to your needs.
+-  When not using sqlite3, adjust `config/database.yml`. Install additional packages if needed.
+
+### 7. Init
+
+- Database: `rake db:migrate RAILS_ENV=production`
+- Wireguard configuration:  `rake init:wg_conf RAILS_ENV=production`
+
+Make sure, that `/etc/wireguard/rest.conf` (default location, configurable) is correct and applicable: `sudo /usr/bin/setconf wg-rest /etc/wireguard/rest.conf`
+
+### 8. Start server
+
+`rails s -e production`
+
 
 ## License
 
