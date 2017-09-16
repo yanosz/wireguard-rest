@@ -18,7 +18,7 @@ Please note:
 
 * Users are identified by a secret account ID (ie generating via makepasswd: `makepasswd --chars=20`). Account IDs are unique.
 * Documents contain comments and additional information: In order to keep the database schema simple, all additional information is supposed to be stored using a json encoded document (NoSQL-Style).
-* On errors, HTTP 422 (Unprocessable Entity) and a short text is returned.
+* On errors, HTTP 422 (Unprocessable Entity) and error message are returned.
 
 ### Uploading public keys
 
