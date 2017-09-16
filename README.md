@@ -16,7 +16,7 @@ being called from frontend endpoints (registration portal, etc.).
 
 Please note:
 
-* Users are identified by a secret account ID (ie generating via makepasswd: `makepasswd --chars=20`). By specifying an account ID, keys can be deleted. Thus, it should kept secret. Account ID are unique.
+* Users are identified by a secret account ID (ie generating via makepasswd: `makepasswd --chars=20`). Account IDs are unique.
 * Documents contain comments and additional information: In order to keep the database schema simple, all additional information is supposed to be stored using a json encoded document (NoSQL-Style).
 * On errors, HTTP 422 (Unprocessable Entity) and a short text is returned.
 
