@@ -32,7 +32,7 @@ For debugging (by users) all public keys can be retrieved. Account ID and Docume
 * Example call: `curl -sSL https://<endpoint>`
 * Result (JSON): `[{id: 1, pubkey: AA.., created_at: '2017-01-01 18:25'},{id: 2, pubkey: BB.., created_at: '2017-01-01 19:25'}]`
 
-### Delete a public keys
+### Delete public keys
 
 * Example call: `curl -X "DELETE" https://<endpoint> -d account="<account id>"`
 * Result: HTTP 204 (No Content)
