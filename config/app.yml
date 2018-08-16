@@ -1,5 +1,8 @@
 ipv4: '172.27.128.2'
 ipv6: 'fd78:e474:9f6f:df64::2'
+ipv6_pd:
+  base: '2001:67C:20A0:B180::1'
+  size: '61'
 config_file: '/etc/wireguard/rest.conf'
 secret_key_file: '/etc/wireguard/privatekey_rest'
 wg_reload_cmd: 'sudo /usr/bin/wg setconf rest /etc/wireguard/rest.conf'
