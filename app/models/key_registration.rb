@@ -28,20 +28,27 @@ class KeyRegistration < ActiveRecord::Base
 
 
   def client_networks_str
-    ipv4_i = IPAddr.new(@@settings["ipv4"])
-    ipv6_i = IPAddr.new(@@settings["ipv6"])
-    ipv6_pd_i = IPAddr.new(@@settings["ipv6_pd"]["base"])
-    ipv6_s_i = @@settings["ipv6_pd"]["size"].to_i
+    networks = []
 
-    offset = 2**(128-ipv6_s_i)
+    if @@settings["ipv4"]
+      ipv4_i = IPAddr.new(@@settings["ipv4"])
+      networks << IPAddr.new(ipv4_i.to_i + 2*self.id, Socket::AF_INET).to_s
+    end
 
+    if @@settings["ipv6"]
+      ipv6_i = IPAddr.new(@@settings["ipv6"])
+      networks << IPAddr.new(ipv6_i.to_i + 2*self.id, Socket::AF_INET6).to_s
+    end
 
-    ipv4 = IPAddr.new(ipv4_i.to_i + 2*self.id, Socket::AF_INET)
-    ipv6 = IPAddr.new(ipv6_i.to_i + 2*self.id, Socket::AF_INET6)
+    if @@settings["ipv6_pd"]
+      ipv6_pd_i = IPAddr.new(@@settings["ipv6_pd"]["base"])
+      ipv6_s_i = @@settings["ipv6_pd"]["size"].to_i
+      offset = 2**(128-ipv6_s_i)
+      ipv6_pd = IPAddr.new(ipv6_pd_i.to_i + (self.id-1)*offset, Socket::AF_INET6)
+      networks << "#{ipv6_pd}/#{ipv6_s_i}"
+    end
 
-    ipv6_pd = IPAddr.new(ipv6_pd_i.to_i + (self.id-1)*offset, Socket::AF_INET6)
-
-    return "#{ipv4},#{ipv6}/128,#{ipv6_pd}/#{ipv6_s_i}"
+    return networks.join ","
 
   end
 

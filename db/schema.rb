@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903205402) do
+ActiveRecord::Schema.define(version: 20180816130601) do
 
   create_table "key_registrations", force: :cascade do |t|
     t.string   "pubkey"
