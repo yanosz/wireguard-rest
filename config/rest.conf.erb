@@ -1,8 +1,8 @@
 [Interface]
-PrivateKey = <%= priv_key %>
 ListenPort = 1195
-<% for peer in peers do %>
+PrivateKey = <%= priv_key %>
 
+<% for peer in peers do %>
 [Peer]
 PublicKey = <%= peer.pubkey %>
 AllowedIPs = <%= peer.client_networks_str %>
