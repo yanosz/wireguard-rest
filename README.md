@@ -41,7 +41,7 @@ For debugging (by users) all public keys can be retrieved. Account ID and Docume
 
 ## Deployment
 
-This application can be deployed as a standard ruby on rails application. For simplicity, the Debian rails package as of Debian 9.0 / Stretch can be used.
+This application can be deployed as a standard ruby on rails application. For simplicity, the Debian rails package as of Debian 10 / Buster can be used.
 
 Please note, that the deployment instructions are rather brief and assume general knowledge on deploying Ruby on Rails applications.
 
