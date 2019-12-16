@@ -1,12 +1,14 @@
 # Wireguard Rest
 
-This rails application implements a webserivce (REST) API for wireguard --- similar to (Mullvad's)[https://www.mullvad.net/guides/wireguard-and-mullvad-vpn/].
+**Note: This branch is meant for Debian 10 / buster.**
+
+This rails application implements a webserivce (REST) API for wireguard --- similar to Mullvad's (https://www.mullvad.net/guides/wireguard-and-mullvad-vpn/).
 
 It allows users --- identified by there account number --- to manage wireguard public keys.
 In return, it generates network configuration just like Mullvad.
 
 This application does not implement any busy logic - it is uses in the Freifunk KBU network in order to provide a tinkering alternative to mullvad
-within the (Freifunk KBU)[https://kbu.freifunk.net] network.
+within the Freifunk KBU (https://kbu.freifunk.net) network.
 
 This application provides CRUD functionality for public keys. When running on wireguard-VPN-servers, it may be used as a backend service,
 being called from frontend endpoints (registration portal, etc.).
