@@ -1,3 +1,8 @@
+# Archive note:
+
+I'm not working on this project at this point in time.
+
+
 # Wireguard Rest
 
 **Note: This branch is meant for Debian 10 / buster.**
